@@ -60,6 +60,37 @@ export function About() {
           </div>
         </div>
       </div>
+
+      {/* Ключевая информация — значения задаются в lib/content.ts → about.facts */}
+      <div className="container-x mt-16 grid gap-4 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+        {about.facts.map(({ icon: Icon, label, value, accent }, i) => (
+          <Reveal key={label} delay={i * 80}>
+            <div
+              className={cn(
+                "flex h-full items-center gap-4 rounded-[28px] border p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-card sm:flex-col sm:items-start sm:gap-5 sm:p-6",
+                accent === "green"
+                  ? "border-sage bg-sage-light hover:border-leaf"
+                  : "border-brand/40 bg-cream hover:border-brand",
+              )}
+            >
+              <span
+                className={cn(
+                  "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl",
+                  accent === "green" ? "bg-leaf" : "bg-brand",
+                )}
+              >
+                <Icon className="h-6 w-6 text-ink" strokeWidth={2} />
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-muted">{label}</p>
+                <p className={cn("mt-1 text-xl font-extrabold", value ? "text-ink" : "text-ink/40")}>
+                  {value || "Будет указано"}
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 }

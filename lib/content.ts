@@ -3,10 +3,12 @@
  * Всё, что помечено TODO, — нейтральные заглушки: замените их на реальную информацию.
  */
 import {
+  Baby,
   BookOpen,
   Fingerprint,
   GraduationCap,
   HeartHandshake,
+  Languages,
   Palette,
   Puzzle,
   ShieldCheck,
@@ -15,6 +17,8 @@ import {
   Sprout,
   Sun,
   TreePine,
+  Users,
+  Utensils,
   type LucideIcon,
 } from "lucide-react";
 
@@ -23,6 +27,13 @@ type IconItem = {
   title: string;
   text: string;
   /** Мягкий зелёный акцент для отдельных карточек (по умолчанию — жёлтый) */
+  accent?: "green";
+};
+
+type FactItem = {
+  icon: LucideIcon;
+  label: string;
+  value: string;
   accent?: "green";
 };
 
@@ -58,6 +69,13 @@ export const about = {
     { icon: Sprout, accent: "green", title: "Развитие", text: "Новые знания через игру" },
     { icon: Sofa, title: "Комфорт", text: "Уютная и спокойная среда" },
   ] satisfies IconItem[],
+  // TODO: впишите значения. Пока value пустое, на сайте показывается «Будет указано».
+  facts: [
+    { icon: Users, label: "Количество групп", value: "" },
+    { icon: Baby, label: "Возраст детей", value: "", accent: "green" },
+    { icon: Languages, label: "Языки обучения", value: "" },
+    { icon: Utensils, label: "Питание", value: "", accent: "green" },
+  ] satisfies FactItem[],
 };
 
 /* ------------------------- ПРЕИМУЩЕСТВА ------------------------- */

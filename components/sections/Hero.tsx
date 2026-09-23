@@ -1,5 +1,8 @@
+import Image from "next/image";
 import { ArrowRight, Check, Heart, Sparkles } from "lucide-react";
 import { hero } from "@/lib/content";
+import { siteConfig } from "@/lib/site";
+import { publicFileExists } from "@/lib/files";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { SafeImage } from "@/components/ui/SafeImage";
@@ -60,6 +63,20 @@ export function Hero() {
               priority
               sizes="(min-width: 1024px) 45vw, (min-width: 640px) 36rem, 100vw"
             />
+
+            {/* Логотип поверх фото — правый верхний угол, чтобы не закрывать лица */}
+            {publicFileExists(siteConfig.logo) && (
+              <div className="absolute top-3 right-3 rounded-[18px] bg-white/75 p-2 shadow-[0_10px_24px_-12px_rgb(40_83_122/0.35)] ring-1 ring-white/60 backdrop-blur-md sm:top-5 sm:right-5 sm:rounded-[20px] sm:p-2.5">
+                <Image
+                  src={siteConfig.logo}
+                  alt="Логотип BABY CENTER"
+                  width={140}
+                  height={140}
+                  priority
+                  className="h-auto w-[84px] sm:w-[110px] lg:w-[128px]"
+                />
+              </div>
+            )}
           </div>
 
           {/* Плавающие карточки */}
