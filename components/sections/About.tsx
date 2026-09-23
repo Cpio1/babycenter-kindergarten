@@ -16,7 +16,7 @@ export function About() {
           <Circle className="absolute -right-3 bottom-16 h-14 w-14 bg-brand" />
           <Sparkle className="absolute -bottom-5 left-10 h-7 w-7 text-brand" />
 
-          {/* 👉 Фото о саде: положите файл в public/about.jpg */}
+          {/* Фото о саде: public/images/image1.jpeg (задаётся в lib/content.ts → about.image) */}
           <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] bg-cream shadow-soft">
             <SafeImage src={about.image} alt={about.imageAlt} sizes="(min-width: 1024px) 40vw, 100vw" />
           </div>

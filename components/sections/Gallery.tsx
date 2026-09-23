@@ -6,8 +6,8 @@ import { Circle, Sparkle } from "@/components/ui/Decorations";
 import { GalleryGrid } from "./GalleryGrid";
 
 export function Gallery() {
-  // Проверяем на сервере, какие фото уже добавлены в public/images
-  const items = galleryImages.map((image) => ({ ...image, exists: publicFileExists(image.src) }));
+  // Показываем только фото, которые реально лежат в public/images
+  const items = galleryImages.filter((image) => publicFileExists(image.src));
 
   return (
     <section id="gallery" className="relative overflow-hidden py-20 sm:py-28">

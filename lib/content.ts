@@ -58,20 +58,19 @@ export const about = {
     "BABY CENTER — это пространство, где ребёнок чувствует себя в безопасности и окружён вниманием. Мы создаём комфортную и развивающую среду, в которой хочется играть, узнавать новое и дружить.",
     "Каждый день наполнен тёплым общением, интересными занятиями и заботой о самочувствии детей, чтобы родители были спокойны, а малыши — счастливы.",
   ],
-  // Путь к фото: положите файл в public/about.jpg
-  image: "/about.jpg",
+  // Фото для раздела «О нас» (в галерее не используется)
+  image: "/images/image1.jpeg",
   imageAlt: "Жизнь в детском саду BABY CENTER",
   values: [
     { icon: HeartHandshake, title: "Забота", text: "Внимание к каждому ребёнку" },
     { icon: Sprout, accent: "green", title: "Развитие", text: "Новые знания через игру" },
     { icon: Sofa, title: "Комфорт", text: "Уютная и спокойная среда" },
   ] satisfies IconItem[],
-  // TODO: впишите значения. Пока value пустое, на сайте показывается «Будет указано».
   facts: [
-    { icon: Users, label: "Количество групп", value: "" },
-    { icon: Baby, label: "Возраст детей", value: "", accent: "green" },
-    { icon: Languages, label: "Языки обучения", value: "" },
-    { icon: Utensils, label: "Питание", value: "", accent: "green" },
+    { icon: Users, label: "Количество групп", value: "5 групп" },
+    { icon: Baby, label: "Возраст детей", value: "2–6 лет", accent: "green" },
+    { icon: Languages, label: "Языки обучения", value: "Русский и казахский" },
+    { icon: Utensils, label: "Питание", value: "5-разовое питание", accent: "green" },
   ] satisfies FactItem[],
 };
 
@@ -161,12 +160,16 @@ export type GalleryImage = {
   position?: string;
 };
 
-// Фото лежат в public/images/image1.jpg … image12.jpg.
-// Можно заменить массив на свой — добавить, убрать или переставить фото.
-export const galleryImages: GalleryImage[] = Array.from({ length: 12 }, (_, i) => ({
-  src: `/images/image${i + 1}.jpg`,
-  alt: `Фото из жизни BABY CENTER №${i + 1}`,
-}));
+// Фото лежат в public/images (image1 — в разделе «О нас», здесь не используется).
+// Порядок подобран под раскладку галереи: 1-е — большая плитка.
+// position — какую часть кадра держать при обрезке, чтобы не срезать лица.
+export const galleryImages: GalleryImage[] = [
+  { src: "/images/image2.jpeg", alt: "BABY CENTER", position: "50% 62%" },
+  { src: "/images/image6.jpeg", alt: "BABY CENTER", position: "50% 30%" },
+  { src: "/images/image3.jpeg", alt: "BABY CENTER", position: "50% 68%" },
+  { src: "/images/image5.jpeg", alt: "BABY CENTER", position: "50% 65%" },
+  { src: "/images/image4.jpeg", alt: "BABY CENTER", position: "50% 70%" },
+];
 
 export const gallery = {
   eyebrow: "Галерея",

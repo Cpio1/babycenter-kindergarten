@@ -4,45 +4,33 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronDown, ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { GalleryImage } from "@/lib/content";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { cn } from "@/lib/cn";
 
-type Item = GalleryImage & { exists: boolean };
-
 /** Сколько фото показывать до нажатия «Смотреть все фотографии» */
-const INITIAL_COUNT = 7;
+const INITIAL_COUNT = 5;
 
 /**
- * Раскладка «мозаикой» для 12 фото (desktop — 4 колонки, mobile — 2).
- * Первые 7 плиток образуют ровный блок, все 12 — тоже без пустот.
+ * Раскладка «мозаикой» (desktop — 4 колонки, mobile — 2).
+ * Узор из 5 плиток повторяется: каждые 5 фото образуют ровный блок без пустот.
  */
 const tileClasses = [
   "col-span-2 row-span-2", // 1 — большая
   "", // 2
-  "lg:row-span-2", // 3 — высокая
+  "", // 3
   "", // 4
   "", // 5
-  "lg:col-span-2", // 6 — широкая
-  "", // 7
-  "col-span-2 lg:col-span-1 lg:row-span-2", // 8
-  "lg:col-span-2", // 9
-  "", // 10
-  "", // 11
-  "lg:col-span-2", // 12
 ];
 
-export function GalleryGrid({ items }: { items: Item[] }) {
+export function GalleryGrid({ items }: { items: GalleryImage[] }) {
   const [showAll, setShowAll] = useState(false);
   const [active, setActive] = useState<number | null>(null);
 
   const visible = showAll ? items : items.slice(0, INITIAL_COUNT);
-  // Для лайтбокса используем только реально существующие фото
-  const photos = items.filter((item) => item.exists);
 
   const close = useCallback(() => setActive(null), []);
   const step = useCallback(
-    (dir: 1 | -1) => setActive((i) => (i === null ? i : (i + dir + photos.length) % photos.length)),
-    [photos.length],
+    (dir: 1 | -1) => setActive((i) => (i === null ? i : (i + dir + items.length) % items.length)),
+    [items.length],
   );
 
   useEffect(() => {
@@ -61,7 +49,7 @@ export function GalleryGrid({ items }: { items: Item[] }) {
     };
   }, [active, close, step]);
 
-  const current = active !== null ? photos[active] : null;
+  const current = active !== null ? items[active] : null;
 
   return (
     <>
@@ -72,19 +60,11 @@ export function GalleryGrid({ items }: { items: Item[] }) {
             tileClasses[i % tileClasses.length],
           );
 
-          if (!item.exists) {
-            return (
-              <div key={item.src} className={tileClass}>
-                <ImagePlaceholder label={`public${item.src}`} tone={i % 3 === 1 ? "green" : "cream"} />
-              </div>
-            );
-          }
-
           return (
             <button
               key={item.src}
               type="button"
-              onClick={() => setActive(photos.indexOf(item))}
+              onClick={() => setActive(i)}
               aria-label={`Открыть фото: ${item.alt}`}
               className={cn(tileClass, "cursor-zoom-in focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand")}
             >
@@ -137,7 +117,7 @@ export function GalleryGrid({ items }: { items: Item[] }) {
             <X className="h-5 w-5" />
           </button>
 
-          {photos.length > 1 && (
+          {items.length > 1 && (
             <>
               <button
                 type="button"
