@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
 
-/** Иконка Instagram (в lucide-react брендовых иконок нет) */
+/** Иконка Instagram в стиле lucide (в lucide-react брендовые иконки удалены) */
 function InstagramIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -50,7 +50,7 @@ export function Contacts() {
                   href={contact.href}
                   target={contact.href.startsWith("http") ? "_blank" : undefined}
                   rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="transition-colors hover:text-ink/70"
+                  className="underline decoration-sage decoration-2 underline-offset-4 transition-colors hover:text-sage-dark hover:decoration-leaf"
                 >
                   {contact.value}
                 </a>
@@ -98,7 +98,7 @@ export function Contacts() {
                     <MapPin className="h-7 w-7 text-ink" />
                   </span>
                   <span className="text-xl font-extrabold text-ink">Карта</span>
-                  <span className="text-sm text-muted">Появится после добавления адреса</span>
+                  <span className="text-sm text-muted">Скоро здесь появится карта</span>
                 </div>
               )}
             </div>

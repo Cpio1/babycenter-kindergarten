@@ -41,10 +41,18 @@ export type Contact = {
   href?: string;
 };
 
-// TODO: замените value (и добавьте href) на реальные данные
 export const contacts: Contact[] = [
-  { type: "address", label: "Адрес", value: "Адрес будет добавлен" },
-  { type: "phone", label: "Телефон", value: "Телефон будет добавлен" },
-  { type: "instagram", label: "Instagram", value: "Instagram будет добавлен" },
-  { type: "schedule", label: "Режим работы", value: "Режим работы будет добавлен" },
+  {
+    type: "address",
+    label: "Адрес",
+    value: "г. Алматы, Алатауский район, мкр. Акбулак, ул. Талдыарал, д. 3",
+  },
+  { type: "phone", label: "Телефон", value: "+7 747 114 73 48", href: "tel:+77471147348" },
+  {
+    type: "instagram",
+    label: "Instagram",
+    value: "@baby_center_almaty",
+    href: "https://instagram.com/baby_center_almaty",
+  },
+  { type: "schedule", label: "Режим работы", value: "08:00–18:30" },
 ];
