@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import { contacts, siteConfig, type ContactType } from "@/lib/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { cn } from "@/lib/cn";
 
 /** Иконка Instagram (в lucide-react брендовых иконок нет) */
 function InstagramIcon({ className }: { className?: string }) {
@@ -36,7 +37,7 @@ export function Contacts() {
     <section id="contacts" className="py-20 sm:py-28">
       <div className="container-x">
         <Reveal>
-          <SectionHeading eyebrow="Свяжитесь с нами" title="Контакты" />
+          <SectionHeading eyebrow="Свяжитесь с нами" eyebrowTone="green" title="Контакты" />
         </Reveal>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8">
@@ -60,8 +61,13 @@ export function Contacts() {
               return (
                 <li key={contact.type}>
                   <Reveal delay={i * 80}>
-                    <div className="flex items-center gap-5 rounded-3xl border border-ink/[0.07] bg-white p-5 transition-all duration-300 hover:border-brand/60 hover:shadow-card sm:p-6">
-                      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-soft">
+                    <div className="flex items-center gap-5 rounded-3xl border border-ink/[0.07] bg-white p-5 transition-all duration-300 hover:border-leaf hover:shadow-card sm:p-6">
+                      <span
+                        className={cn(
+                          "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl",
+                          i % 2 === 0 ? "bg-brand-soft" : "bg-sage",
+                        )}
+                      >
                         <Icon className="h-6 w-6 text-ink" />
                       </span>
                       <div>
@@ -77,7 +83,7 @@ export function Contacts() {
 
           {/* Карта: вставьте ссылку в lib/site.ts → mapEmbedUrl */}
           <Reveal delay={150} className="h-full">
-            <div className="relative h-full min-h-[360px] overflow-hidden rounded-[32px] bg-cream">
+            <div className="relative h-full min-h-[360px] overflow-hidden rounded-[32px] bg-sage-light">
               {siteConfig.mapEmbedUrl ? (
                 <iframe
                   src={siteConfig.mapEmbedUrl}

@@ -68,14 +68,14 @@ export function GalleryGrid({ items }: { items: Item[] }) {
       <div className="mt-14 grid auto-rows-[150px] grid-flow-dense grid-cols-2 gap-3 sm:auto-rows-[210px] sm:gap-4 lg:auto-rows-[230px] lg:grid-cols-4 lg:gap-5">
         {visible.map((item, i) => {
           const tileClass = cn(
-            "group relative overflow-hidden rounded-[20px] bg-white sm:rounded-[28px]",
+            "group relative overflow-hidden rounded-[20px] bg-cream sm:rounded-[28px]",
             tileClasses[i % tileClasses.length],
           );
 
           if (!item.exists) {
             return (
               <div key={item.src} className={tileClass}>
-                <ImagePlaceholder label={`public${item.src}`} tone="white" />
+                <ImagePlaceholder label={`public${item.src}`} tone={i % 3 === 1 ? "green" : "cream"} />
               </div>
             );
           }
@@ -96,7 +96,7 @@ export function GalleryGrid({ items }: { items: Item[] }) {
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 style={{ objectPosition: item.position ?? "50% 30%" }}
               />
-              <span className="absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover:bg-ink/[0.06]" />
+              <span className="absolute inset-0 bg-sage-dark/0 ring-0 ring-sage ring-inset transition-all duration-500 group-hover:bg-sage-dark/[0.08] group-hover:ring-4 group-hover:ring-leaf rounded-[inherit]" />
             </button>
           );
         })}
@@ -107,7 +107,7 @@ export function GalleryGrid({ items }: { items: Item[] }) {
           <button
             type="button"
             onClick={() => setShowAll((v) => !v)}
-            className="group inline-flex h-14 items-center gap-2 rounded-full bg-white px-8 font-bold text-ink shadow-card ring-1 ring-ink/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand hover:ring-brand focus-visible:ring-4 focus-visible:ring-brand/60 focus-visible:outline-none"
+            className="group inline-flex h-14 items-center gap-2 rounded-full bg-sage px-8 font-bold text-ink shadow-[0_12px_28px_-14px_rgb(143_190_114/0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-leaf focus-visible:ring-4 focus-visible:ring-brand/60 focus-visible:outline-none"
           >
             {showAll ? "Свернуть галерею" : "Смотреть все фотографии"}
             <ChevronDown className={cn("h-5 w-5 transition-transform duration-300", showAll && "rotate-180")} />

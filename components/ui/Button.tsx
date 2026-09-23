@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "outline" | "white";
+type Variant = "primary" | "green" | "outline" | "white";
 type Size = "md" | "lg";
 
 type ButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -13,7 +13,8 @@ type ButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 
 const variants: Record<Variant, string> = {
   primary: "bg-brand text-ink shadow-glow hover:bg-[#ffe500] hover:shadow-[0_18px_34px_-14px_rgb(230_200_0/0.95)]",
-  outline: "bg-white text-ink ring-1 ring-inset ring-ink/15 hover:ring-ink/30 hover:bg-cream",
+  green: "bg-sage text-ink shadow-[0_12px_28px_-14px_rgb(143_190_114/0.9)] hover:bg-leaf",
+  outline: "bg-white text-ink ring-1 ring-inset ring-ink/15 hover:bg-sage-light hover:ring-leaf",
   white: "bg-white text-ink shadow-card hover:shadow-card-hover",
 };
 

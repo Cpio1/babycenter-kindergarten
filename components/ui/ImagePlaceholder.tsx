@@ -3,9 +3,14 @@ import { cn } from "@/lib/cn";
 
 type ImagePlaceholderProps = {
   label?: string;
-  /** "white" — для размещения на кремовом фоне (например, в галерее) */
-  tone?: "cream" | "white";
+  /** Фон заглушки: кремовый (по умолчанию) или светло-зелёный */
+  tone?: "cream" | "green";
   className?: string;
+};
+
+const tones = {
+  cream: "bg-cream text-ink/45",
+  green: "bg-sage-light text-sage-dark/60",
 };
 
 /** Placeholder на месте фото, пока файл не добавлен в public */
@@ -13,8 +18,8 @@ export function ImagePlaceholder({ label, tone = "cream", className }: ImagePlac
   return (
     <div
       className={cn(
-        "bg-dots absolute inset-0 flex flex-col items-center justify-center gap-3 text-ink/45",
-        tone === "white" ? "rounded-[inherit] bg-white ring-1 ring-brand/40 ring-inset" : "bg-cream",
+        "bg-dots absolute inset-0 flex flex-col items-center justify-center gap-3",
+        tones[tone],
         className,
       )}
     >

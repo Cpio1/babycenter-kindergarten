@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export function CallToAction() {
   return (
-    <section className="px-2 sm:px-4">
+    <section className="mt-16 px-2 sm:mt-24 sm:px-4">
       <Reveal>
         <div className="relative overflow-hidden rounded-[32px] bg-brand px-6 py-20 text-center sm:rounded-[48px] sm:py-24">
           {/* Белые декоративные элементы */}

@@ -35,7 +35,7 @@ export function Hero() {
           <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3">
             {hero.highlights.map((item) => (
               <li key={item} className="flex items-center gap-2 font-semibold text-ink/80">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sage">
                   <Check className="h-3.5 w-3.5 text-ink" strokeWidth={3} />
                 </span>
                 {item}
@@ -47,10 +47,10 @@ export function Hero() {
         {/* Фото с декором */}
         <Reveal delay={150} className="relative mx-auto w-full max-w-xl lg:max-w-none">
           <Circle className="absolute -top-6 -right-4 h-32 w-32 bg-brand sm:-top-8 sm:-right-8 sm:h-44 sm:w-44" />
-          <Circle className="absolute -bottom-8 -left-6 h-24 w-24 border-[10px] border-brand/70 sm:h-32 sm:w-32" />
+          <Circle className="absolute -bottom-8 -left-6 h-24 w-24 border-[10px] border-leaf/80 sm:h-32 sm:w-32" />
           <DotGrid className="absolute -bottom-10 right-10 hidden h-28 w-40 sm:block" />
-          <Sparkle className="absolute -left-3 top-10 h-8 w-8 text-brand sm:-left-10" />
-          <Sparkle className="absolute -right-2 bottom-24 h-5 w-5 text-ink/15 sm:-right-8" />
+          <Sparkle className="absolute -left-3 top-10 h-8 w-8 text-leaf sm:-left-10" />
+          <Sparkle className="absolute -right-2 bottom-24 h-5 w-5 text-brand sm:-right-8" />
 
           {/* 👉 Фото hero: положите файл в public/hero.jpg */}
           <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] bg-cream shadow-soft sm:aspect-[5/4] lg:aspect-[4/5] lg:rounded-[40px]">
@@ -77,7 +77,7 @@ export function Hero() {
             className="animate-float-soft absolute top-8 -left-4 hidden items-center gap-2 rounded-full bg-white/95 py-2.5 pr-5 pl-2.5 shadow-soft backdrop-blur sm:flex lg:-left-10"
             style={{ animationDelay: "1.5s" }}
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-soft">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-sage">
               <Sparkles className="h-4 w-4 text-ink" />
             </span>
             <span className="text-sm font-bold text-ink">Игры и открытия</span>

@@ -18,7 +18,7 @@ export function Footer() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="font-semibold text-ink/75 transition-colors hover:text-ink hover:underline hover:decoration-brand hover:decoration-4 hover:underline-offset-8"
+                  className="font-semibold text-ink/75 transition-colors hover:text-ink hover:underline hover:decoration-leaf hover:decoration-4 hover:underline-offset-8"
                 >
                   {link.label}
                 </a>
@@ -28,8 +28,8 @@ export function Footer() {
         </nav>
       </div>
 
-      <div className="border-t border-ink/[0.07]">
-        <div className="container-x py-6 text-sm text-muted">© 2026 BABY CENTER. Все права защищены.</div>
+      <div className="bg-sage-light">
+        <div className="container-x py-6 text-sm text-ink/70">© 2026 BABY CENTER. Все права защищены.</div>
       </div>
     </footer>
   );

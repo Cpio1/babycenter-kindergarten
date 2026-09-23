@@ -27,7 +27,8 @@ npm run build    # production-сборка
 - `lib/site.ts` — контакты, ссылка на документы (`documentsUrl`), карта (`mapEmbedUrl`), меню.
 - `lib/content.ts` — все тексты секций, список фото галереи.
   Для фото галереи можно указать `position` (например `"50% 20%"`), чтобы не обрезать лица.
-- `app/globals.css` — фирменные цвета (`@theme`).
+- `app/globals.css` — фирменные цвета (`@theme`): жёлтый `brand` / `brand-soft`, зелёный `leaf` / `sage` / `sage-light`.
+- Какие карточки зелёные — поле `accent: "green"` в `lib/content.ts`.
 
 ## Деплой на Vercel
 

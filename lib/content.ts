@@ -22,6 +22,8 @@ type IconItem = {
   icon: LucideIcon;
   title: string;
   text: string;
+  /** Мягкий зелёный акцент для отдельных карточек (по умолчанию — жёлтый) */
+  accent?: "green";
 };
 
 /* ---------------------------- HERO ---------------------------- */
@@ -53,7 +55,7 @@ export const about = {
   imageAlt: "Жизнь в детском саду BABY CENTER",
   values: [
     { icon: HeartHandshake, title: "Забота", text: "Внимание к каждому ребёнку" },
-    { icon: Sprout, title: "Развитие", text: "Новые знания через игру" },
+    { icon: Sprout, accent: "green", title: "Развитие", text: "Новые знания через игру" },
     { icon: Sofa, title: "Комфорт", text: "Уютная и спокойная среда" },
   ] satisfies IconItem[],
 };
@@ -72,6 +74,7 @@ export const features = {
     },
     {
       icon: BookOpen,
+      accent: "green",
       title: "Развивающие занятия",
       text: "Занятия, которые помогают познавать мир с интересом и удовольствием.",
     },
@@ -82,6 +85,7 @@ export const features = {
     },
     {
       icon: HeartHandshake,
+      accent: "green",
       title: "Заботливые воспитатели",
       text: "Внимательные взрослые, которые поддерживают и вдохновляют детей.",
     },
@@ -92,6 +96,7 @@ export const features = {
     },
     {
       icon: Sun,
+      accent: "green",
       title: "Комфортная атмосфера",
       text: "Тёплая, доброжелательная обстановка, в которой легко и спокойно.",
     },

@@ -53,7 +53,7 @@ export function Header({ logo }: { logo: ReactNode }) {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-full px-4 py-2 text-[15px] font-semibold text-ink/75 transition-colors duration-200 hover:bg-brand-soft hover:text-ink"
+              className="rounded-full px-4 py-2 text-[15px] font-semibold text-ink/75 transition-colors duration-200 hover:bg-sage-light hover:text-ink"
             >
               {link.label}
             </a>
@@ -70,7 +70,7 @@ export function Header({ logo }: { logo: ReactNode }) {
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Закрыть меню" : "Открыть меню"}
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-soft text-ink transition-colors hover:bg-brand lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-sage-light text-ink transition-colors hover:bg-sage lg:hidden"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -92,7 +92,7 @@ export function Header({ logo }: { logo: ReactNode }) {
                 href={link.href}
                 onClick={() => setOpen(false)}
                 tabIndex={open ? 0 : -1}
-                className="rounded-2xl px-4 py-3 text-lg font-bold text-ink transition-colors hover:bg-brand-soft"
+                className="rounded-2xl px-4 py-3 text-lg font-bold text-ink transition-colors hover:bg-sage-light"
               >
                 {link.label}
               </a>
