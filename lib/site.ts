@@ -14,8 +14,8 @@ export const siteConfig = {
 
   logo: "/logo.png",
 
-  // TODO: замените "#" на ссылку на документы (Google Drive, PDF и т.п.)
-  documentsUrl: "#",
+  // Аттестационные документы (папка Google Drive)
+  documentsUrl: "https://drive.google.com/drive/folders/1w5eXovarENTAzEsQpxvXPwdgDHVeoMdD",
 
   // TODO: вставьте src из кода встраивания Google Maps / 2GIS / Яндекс Карт.
   // Пока строка пустая, показывается аккуратный placeholder «Карта».
