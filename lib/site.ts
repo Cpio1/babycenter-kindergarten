@@ -17,9 +17,10 @@ export const siteConfig = {
   // Аттестационные документы (папка Google Drive)
   documentsUrl: "https://drive.google.com/drive/folders/1w5eXovarENTAzEsQpxvXPwdgDHVeoMdD",
 
-  // TODO: вставьте src из кода встраивания Google Maps / 2GIS / Яндекс Карт.
-  // Пока строка пустая, показывается аккуратный placeholder «Карта».
-  mapEmbedUrl: "",
+  // Google Maps Embed (без API key) — интерактивная карта в разделе «Контакты»
+  mapEmbedUrl: `https://www.google.com/maps?q=${encodeURIComponent(
+    "Алматы, Алатауский район, микрорайон Акбулак, улица Талдыарал, дом 3",
+  )}&output=embed`,
 };
 
 export const navLinks = [

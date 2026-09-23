@@ -81,26 +81,20 @@ export function Contacts() {
             })}
           </ul>
 
-          {/* Карта: вставьте ссылку в lib/site.ts → mapEmbedUrl */}
+          {/* Карта: ссылка задаётся в lib/site.ts → mapEmbedUrl */}
           <Reveal delay={150} className="h-full">
             <div className="relative h-full min-h-[360px] overflow-hidden rounded-[32px] bg-sage-light">
-              {siteConfig.mapEmbedUrl ? (
-                <iframe
-                  src={siteConfig.mapEmbedUrl}
-                  title="Карта — BABY CENTER"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0 h-full w-full border-0"
-                />
-              ) : (
-                <div className="bg-dots absolute inset-0 flex flex-col items-center justify-center gap-4">
-                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand shadow-glow">
-                    <MapPin className="h-7 w-7 text-ink" />
-                  </span>
-                  <span className="text-xl font-extrabold text-ink">Карта</span>
-                  <span className="text-sm text-muted">Скоро здесь появится карта</span>
-                </div>
-              )}
+              <iframe
+                src={siteConfig.mapEmbedUrl}
+                title="Карта — детский сад BABY CENTER, Алматы, мкр. Акбулак, ул. Талдыарал, 3"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full"
+              />
             </div>
           </Reveal>
         </div>
