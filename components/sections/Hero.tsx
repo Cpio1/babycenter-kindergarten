@@ -5,7 +5,6 @@ import { siteConfig } from "@/lib/site";
 import { publicFileExists } from "@/lib/files";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/SectionHeading";
-import { SafeImage } from "@/components/ui/SafeImage";
 import { Circle, DotGrid, Sparkle } from "@/components/ui/Decorations";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -49,33 +48,23 @@ export function Hero() {
 
         {/* Фото с декором */}
         <Reveal delay={150} className="relative mx-auto w-full max-w-xl lg:max-w-none">
-          <Circle className="absolute -top-6 -right-4 h-32 w-32 bg-brand sm:-top-8 sm:-right-8 sm:h-44 sm:w-44" />
-          <Circle className="absolute -bottom-8 -left-6 h-24 w-24 border-[10px] border-leaf/80 sm:h-32 sm:w-32" />
+          <Circle className="absolute -top-6 -right-4 h-32 w-32 bg-sage sm:-top-8 sm:-right-8 sm:h-44 sm:w-44" />
+          <Circle className="absolute -bottom-8 -left-6 h-24 w-24 border-[10px] border-brand/80 sm:h-32 sm:w-32" />
           <DotGrid className="absolute -bottom-10 right-10 hidden h-28 w-40 sm:block" />
           <Sparkle className="absolute -left-3 top-10 h-8 w-8 text-leaf sm:-left-10" />
           <Sparkle className="absolute -right-2 bottom-24 h-5 w-5 text-brand sm:-right-8" />
 
-          {/* 👉 Фото hero: положите файл в public/hero.jpg */}
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] bg-cream shadow-soft sm:aspect-[5/4] lg:aspect-[4/5] lg:rounded-[40px]">
-            <SafeImage
-              src={hero.image}
-              alt={hero.imageAlt}
-              priority
-              sizes="(min-width: 1024px) 45vw, (min-width: 640px) 36rem, 100vw"
-            />
-
-            {/* Логотип поверх фото — правый верхний угол, чтобы не закрывать лица */}
+          {/* Главный визуал — логотип BABY CENTER (public/logo.png) на весь блок */}
+          <div className="relative aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5]">
             {publicFileExists(siteConfig.logo) && (
-              <div className="absolute top-3 right-3 rounded-[18px] bg-white/75 p-2 shadow-[0_10px_24px_-12px_rgb(40_83_122/0.35)] ring-1 ring-white/60 backdrop-blur-md sm:top-5 sm:right-5 sm:rounded-[20px] sm:p-2.5">
-                <Image
-                  src={siteConfig.logo}
-                  alt="Логотип BABY CENTER"
-                  width={140}
-                  height={140}
-                  priority
-                  className="h-auto w-[84px] sm:w-[110px] lg:w-[128px]"
-                />
-              </div>
+              <Image
+                src={siteConfig.logo}
+                alt="Детский сад BABY CENTER — логотип"
+                fill
+                priority
+                sizes="(min-width: 1024px) 45vw, (min-width: 640px) 36rem, 100vw"
+                className="object-contain drop-shadow-[0_28px_40px_rgb(40_83_122/0.18)]"
+              />
             )}
           </div>
 

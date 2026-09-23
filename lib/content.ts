@@ -45,9 +45,6 @@ export const hero = {
   titleHighlight: "растут, играют",
   titleEnd: "и открывают мир",
   subtitle: "Забота, развитие и тёплая атмосфера для каждого ребёнка.",
-  // Путь к фото: положите файл в public/hero.jpg
-  image: "/hero.jpg",
-  imageAlt: "Дети в детском саду BABY CENTER",
   highlights: ["Забота", "Развитие", "Уют"],
 };
 
