@@ -1,6 +1,9 @@
+"use client";
+
 import { Clock, MapPin, Phone, type LucideIcon } from "lucide-react";
 import type { ComponentType } from "react";
 import { contacts, siteConfig, type ContactType } from "@/lib/site";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
@@ -33,18 +36,21 @@ const icons: Record<ContactType, LucideIcon | ComponentType<{ className?: string
 };
 
 export function Contacts() {
+  const { t } = useLanguage();
+
   return (
     <section id="contacts" className="py-20 sm:py-28">
       <div className="container-x">
         <Reveal>
-          <SectionHeading eyebrow="Свяжитесь с нами" eyebrowTone="green" title="Контакты" />
+          <SectionHeading eyebrow={t.contacts.eyebrow} eyebrowTone="green" title={t.contacts.title} />
         </Reveal>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8">
-          {/* Контактные данные — редактируются в lib/site.ts */}
+          {/* Контактные данные — lib/site.ts, подписи и адрес — lib/translations.ts */}
           <ul className="grid gap-4">
             {contacts.map((contact, i) => {
               const Icon = icons[contact.type];
+              const text = contact.value ?? t.contacts.address;
               const value = contact.href ? (
                 <a
                   href={contact.href}
@@ -52,10 +58,10 @@ export function Contacts() {
                   rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="underline decoration-sage decoration-2 underline-offset-4 transition-colors hover:text-sage-dark hover:decoration-leaf"
                 >
-                  {contact.value}
+                  {text}
                 </a>
               ) : (
-                contact.value
+                text
               );
 
               return (
@@ -71,7 +77,7 @@ export function Contacts() {
                         <Icon className="h-6 w-6 text-ink" />
                       </span>
                       <div>
-                        <p className="text-sm font-semibold text-muted">{contact.label}</p>
+                        <p className="text-sm font-semibold text-muted">{t.contacts.labels[contact.type]}</p>
                         <p className="mt-0.5 text-lg font-bold text-ink">{value}</p>
                       </div>
                     </div>
@@ -86,7 +92,7 @@ export function Contacts() {
             <div className="relative h-full min-h-[360px] overflow-hidden rounded-[32px] bg-sage-light">
               <iframe
                 src={siteConfig.mapEmbedUrl}
-                title="Карта — детский сад BABY CENTER, Алматы, мкр. Акбулак, ул. Талдыарал, 3"
+                title={t.contacts.mapTitle}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

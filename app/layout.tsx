@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Nunito } from "next/font/google";
 import { siteConfig } from "@/lib/site";
+import { publicFileExists } from "@/lib/files";
+import { LanguageProvider } from "@/components/i18n/LanguageProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Logo } from "@/components/layout/Logo";
@@ -31,12 +33,17 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const hasLogo = publicFileExists(siteConfig.logo);
+
   return (
     <html lang="ru" className={nunito.variable}>
       <body className="font-sans">
-        <Header logo={<Logo />} />
-        {children}
-        <Footer />
+        {/* Язык по умолчанию — русский; выбор RU / KZ хранится в localStorage */}
+        <LanguageProvider>
+          <Header logo={<Logo hasLogo={hasLogo} />} />
+          {children}
+          <Footer logo={<Logo hasLogo={hasLogo} />} />
+        </LanguageProvider>
       </body>
     </html>
   );

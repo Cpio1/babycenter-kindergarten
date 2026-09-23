@@ -1,14 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import { ArrowRight, Check, Heart, Sparkles } from "lucide-react";
-import { hero } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
-import { publicFileExists } from "@/lib/files";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { Circle, DotGrid, Sparkle } from "@/components/ui/Decorations";
 import { Reveal } from "@/components/ui/Reveal";
 
-export function Hero() {
+/** hasLogo — есть ли public/logo.png (проверяется на сервере в app/page.tsx) */
+export function Hero({ hasLogo }: { hasLogo: boolean }) {
+  const { t } = useLanguage();
+  const hero = t.hero;
+
   return (
     <section id="home" className="relative overflow-hidden">
       {/* Мягкое жёлтое свечение на фоне */}
@@ -27,10 +32,10 @@ export function Hero() {
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button href="#about" size="lg" icon={<ArrowRight className="h-5 w-5" />}>
-              О детском саде
+              {hero.primaryButton}
             </Button>
             <Button href="#contacts" size="lg" variant="outline">
-              Связаться с нами
+              {hero.secondaryButton}
             </Button>
           </div>
 
@@ -56,10 +61,10 @@ export function Hero() {
 
           {/* Главный визуал — логотип BABY CENTER (public/logo.png) на весь блок */}
           <div className="relative aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5]">
-            {publicFileExists(siteConfig.logo) && (
+            {hasLogo && (
               <Image
                 src={siteConfig.logo}
-                alt="Детский сад BABY CENTER — логотип"
+                alt={hero.logoAlt}
                 fill
                 priority
                 sizes="(min-width: 1024px) 45vw, (min-width: 640px) 36rem, 100vw"
@@ -74,8 +79,8 @@ export function Hero() {
               <Heart className="h-5 w-5 text-ink" strokeWidth={2.25} />
             </span>
             <span className="leading-tight">
-              <span className="block font-extrabold text-ink">Тёплая атмосфера</span>
-              <span className="text-sm text-muted">для каждого ребёнка</span>
+              <span className="block font-extrabold text-ink">{hero.cardTitle}</span>
+              <span className="text-sm text-muted">{hero.cardText}</span>
             </span>
           </div>
 
@@ -86,7 +91,7 @@ export function Hero() {
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-sage">
               <Sparkles className="h-4 w-4 text-ink" />
             </span>
-            <span className="text-sm font-bold text-ink">Игры и открытия</span>
+            <span className="text-sm font-bold text-ink">{hero.chip}</span>
           </div>
         </Reveal>
       </div>

@@ -1,10 +1,15 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
-import { cta } from "@/lib/content";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { Button } from "@/components/ui/Button";
 import { Circle, Cloud, Sparkle } from "@/components/ui/Decorations";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function CallToAction() {
+  const { t } = useLanguage();
+  const cta = t.cta;
+
   return (
     <section className="mt-16 px-2 sm:mt-24 sm:px-4">
       <Reveal>
@@ -23,7 +28,7 @@ export function CallToAction() {
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-lg text-ink/75 sm:text-xl">{cta.text}</p>
             <Button href="#contacts" variant="white" size="lg" className="mt-9" icon={<ArrowRight className="h-5 w-5" />}>
-              {cta.buttonLabel}
+              {cta.button}
             </Button>
           </div>
         </div>

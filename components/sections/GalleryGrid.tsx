@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronDown, ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { GalleryImage } from "@/lib/content";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { cn } from "@/lib/cn";
 
 /** Сколько фото показывать до нажатия «Смотреть все фотографии» */
@@ -24,6 +25,7 @@ const tileClasses = [
 export function GalleryGrid({ items }: { items: GalleryImage[] }) {
   const [showAll, setShowAll] = useState(false);
   const [active, setActive] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   const visible = showAll ? items : items.slice(0, INITIAL_COUNT);
 
@@ -65,7 +67,7 @@ export function GalleryGrid({ items }: { items: GalleryImage[] }) {
               key={item.src}
               type="button"
               onClick={() => setActive(i)}
-              aria-label={`Открыть фото: ${item.alt}`}
+              aria-label={`${t.gallery.openPhoto}: ${item.alt}`}
               className={cn(tileClass, "cursor-zoom-in focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand")}
             >
               <Image
@@ -89,7 +91,7 @@ export function GalleryGrid({ items }: { items: GalleryImage[] }) {
             onClick={() => setShowAll((v) => !v)}
             className="group inline-flex h-14 items-center gap-2 rounded-full bg-sage px-8 font-bold text-ink shadow-[0_12px_28px_-14px_rgb(143_190_114/0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-leaf focus-visible:ring-4 focus-visible:ring-brand/60 focus-visible:outline-none"
           >
-            {showAll ? "Свернуть галерею" : "Смотреть все фотографии"}
+            {showAll ? t.gallery.collapse : t.gallery.showAll}
             <ChevronDown className={cn("h-5 w-5 transition-transform duration-300", showAll && "rotate-180")} />
           </button>
         </div>
@@ -100,7 +102,7 @@ export function GalleryGrid({ items }: { items: GalleryImage[] }) {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Просмотр фотографии"
+          aria-label={t.gallery.viewer}
           onClick={close}
           className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/85 p-4 backdrop-blur-sm sm:p-10"
         >
@@ -111,7 +113,7 @@ export function GalleryGrid({ items }: { items: GalleryImage[] }) {
           <button
             type="button"
             onClick={close}
-            aria-label="Закрыть"
+            aria-label={t.gallery.close}
             className="absolute top-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-white text-ink transition hover:bg-brand"
           >
             <X className="h-5 w-5" />
@@ -125,7 +127,7 @@ export function GalleryGrid({ items }: { items: GalleryImage[] }) {
                   e.stopPropagation();
                   step(-1);
                 }}
-                aria-label="Предыдущее фото"
+                aria-label={t.gallery.prev}
                 className="absolute left-3 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-ink transition hover:bg-brand sm:left-6"
               >
                 <ChevronLeft className="h-6 w-6" />
@@ -136,7 +138,7 @@ export function GalleryGrid({ items }: { items: GalleryImage[] }) {
                   e.stopPropagation();
                   step(1);
                 }}
-                aria-label="Следующее фото"
+                aria-label={t.gallery.next}
                 className="absolute right-3 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-ink transition hover:bg-brand sm:right-6"
               >
                 <ChevronRight className="h-6 w-6" />

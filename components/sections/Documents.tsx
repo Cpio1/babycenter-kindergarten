@@ -1,5 +1,7 @@
+"use client";
+
 import { ArrowUpRight, FileCheck2 } from "lucide-react";
-import { documents } from "@/lib/content";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { siteConfig } from "@/lib/site";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -7,6 +9,8 @@ import { Circle, Sparkle } from "@/components/ui/Decorations";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function Documents() {
+  const { t } = useLanguage();
+  const documents = t.documents;
   const isExternal = siteConfig.documentsUrl !== "#";
 
   return (
@@ -41,7 +45,7 @@ export function Documents() {
                   className="self-start md:self-center"
                   {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 >
-                  {documents.buttonLabel}
+                  {documents.button}
                 </Button>
               </div>
             </article>

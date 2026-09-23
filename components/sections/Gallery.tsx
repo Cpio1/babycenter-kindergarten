@@ -1,13 +1,15 @@
-import { gallery, galleryImages } from "@/lib/content";
-import { publicFileExists } from "@/lib/files";
+"use client";
+
+import type { GalleryImage } from "@/lib/content";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Circle, Sparkle } from "@/components/ui/Decorations";
 import { GalleryGrid } from "./GalleryGrid";
 
-export function Gallery() {
-  // Показываем только фото, которые реально лежат в public/images
-  const items = galleryImages.filter((image) => publicFileExists(image.src));
+/** items — только фото, которые есть в public/images (отбираются на сервере в app/page.tsx) */
+export function Gallery({ items }: { items: GalleryImage[] }) {
+  const { t } = useLanguage();
 
   return (
     <section id="gallery" className="relative overflow-hidden py-20 sm:py-28">
@@ -18,9 +20,9 @@ export function Gallery() {
         <Reveal>
           <SectionHeading
             align="center"
-            eyebrow={gallery.eyebrow}
-            title={gallery.title}
-            description={gallery.description}
+            eyebrow={t.gallery.eyebrow}
+            title={t.gallery.title}
+            description={t.gallery.description}
           />
         </Reveal>
 

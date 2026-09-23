@@ -1,11 +1,17 @@
+"use client";
+
 import { about } from "@/lib/content";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { Circle, Cloud, Sparkle } from "@/components/ui/Decorations";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
 
-export function About() {
+/** hasImage — есть ли фото в public (проверяется на сервере в app/page.tsx) */
+export function About({ hasImage }: { hasImage: boolean }) {
+  const { t } = useLanguage();
+
   return (
     <section id="about" className="relative py-20 sm:py-28">
       <div className="container-x grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
@@ -18,78 +24,82 @@ export function About() {
 
           {/* Фото о саде: public/images/image1.jpeg (задаётся в lib/content.ts → about.image) */}
           <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] bg-cream shadow-soft">
-            <SafeImage src={about.image} alt={about.imageAlt} sizes="(min-width: 1024px) 40vw, 100vw" />
+            <SafeImage src={about.image} exists={hasImage} alt={t.about.imageAlt} sizes="(min-width: 1024px) 40vw, 100vw" />
           </div>
         </Reveal>
 
         {/* Текст */}
         <div className="order-1 lg:order-2">
           <Reveal>
-            <SectionHeading eyebrow={about.eyebrow} eyebrowTone="green" title={about.title} />
+            <SectionHeading eyebrow={t.about.eyebrow} eyebrowTone="green" title={t.about.title} />
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
-              {about.paragraphs.map((p) => (
+              {t.about.paragraphs.map((p) => (
                 <p key={p}>{p}</p>
               ))}
             </div>
           </Reveal>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            {about.values.map(({ icon: Icon, title, text, accent }, i) => (
-              <Reveal key={title} delay={i * 100}>
-                <div
-                  className={cn(
-                    "h-full rounded-3xl border p-5 transition-all duration-300 hover:-translate-y-1",
-                    accent === "green"
-                      ? "border-sage bg-sage-light hover:border-leaf"
-                      : "border-brand/40 bg-cream hover:bg-brand-soft",
-                  )}
-                >
-                  <span
+            {about.values.map(({ icon: Icon, accent }, i) => {
+              const { title, text } = t.about.values[i];
+              return (
+                <Reveal key={i} delay={i * 100}>
+                  <div
                     className={cn(
-                      "flex h-11 w-11 items-center justify-center rounded-2xl",
-                      accent === "green" ? "bg-leaf" : "bg-brand",
+                      "h-full rounded-3xl border p-5 transition-all duration-300 hover:-translate-y-1",
+                      accent === "green"
+                        ? "border-sage bg-sage-light hover:border-leaf"
+                        : "border-brand/40 bg-cream hover:bg-brand-soft",
                     )}
                   >
-                    <Icon className={cn("h-5 w-5", "text-ink")} strokeWidth={2} />
-                  </span>
-                  <h3 className="mt-4 text-lg font-extrabold text-ink">{title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">{text}</p>
-                </div>
-              </Reveal>
-            ))}
+                    <span
+                      className={cn(
+                        "flex h-11 w-11 items-center justify-center rounded-2xl",
+                        accent === "green" ? "bg-leaf" : "bg-brand",
+                      )}
+                    >
+                      <Icon className={cn("h-5 w-5", "text-ink")} strokeWidth={2} />
+                    </span>
+                    <h3 className="mt-4 text-lg font-extrabold text-ink">{title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">{text}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </div>
 
-      {/* Ключевая информация — значения задаются в lib/content.ts → about.facts */}
+      {/* Ключевая информация — тексты в lib/translations.ts → about.facts */}
       <div className="container-x mt-16 grid gap-4 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-        {about.facts.map(({ icon: Icon, label, value, accent }, i) => (
-          <Reveal key={label} delay={i * 80}>
-            <div
-              className={cn(
-                "flex h-full items-center gap-4 rounded-[28px] border p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-card sm:flex-col sm:items-start sm:gap-5 sm:p-6",
-                accent === "green"
-                  ? "border-sage bg-sage-light hover:border-leaf"
-                  : "border-brand/40 bg-cream hover:border-brand",
-              )}
-            >
-              <span
+        {about.facts.map(({ icon: Icon, accent }, i) => {
+          const { label, value } = t.about.facts[i];
+          return (
+            <Reveal key={i} delay={i * 80}>
+              <div
                 className={cn(
-                  "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl",
-                  accent === "green" ? "bg-leaf" : "bg-brand",
+                  "flex h-full items-center gap-4 rounded-[28px] border p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-card sm:flex-col sm:items-start sm:gap-5 sm:p-6",
+                  accent === "green"
+                    ? "border-sage bg-sage-light hover:border-leaf"
+                    : "border-brand/40 bg-cream hover:border-brand",
                 )}
               >
-                <Icon className="h-6 w-6 text-ink" strokeWidth={2} />
-              </span>
-              <div>
-                <p className="text-sm font-semibold text-muted">{label}</p>
-                <p className={cn("mt-1 text-xl font-extrabold", value ? "text-ink" : "text-ink/40")}>
-                  {value || "Будет указано"}
-                </p>
+                <span
+                  className={cn(
+                    "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl",
+                    accent === "green" ? "bg-leaf" : "bg-brand",
+                  )}
+                >
+                  <Icon className="h-6 w-6 text-ink" strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-muted">{label}</p>
+                  <p className="mt-1 text-xl font-extrabold text-ink">{value}</p>
+                </div>
               </div>
-            </div>
-          </Reveal>
-        ))}
+            </Reveal>
+          );
+        })}
       </div>
     </section>
   );

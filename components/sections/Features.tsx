@@ -1,10 +1,15 @@
+"use client";
+
 import { features } from "@/lib/content";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Circle, Sparkle } from "@/components/ui/Decorations";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
 
 export function Features() {
+  const { t } = useLanguage();
+
   return (
     <section id="features" className="px-2 sm:px-4">
       <div className="relative overflow-hidden rounded-[32px] bg-brand-soft py-20 sm:rounded-[48px] sm:py-28">
@@ -18,34 +23,37 @@ export function Features() {
           <Reveal>
             <SectionHeading
               align="center"
-              eyebrow={features.eyebrow}
-              title={features.title}
-              description={features.description}
+              eyebrow={t.features.eyebrow}
+              title={t.features.title}
+              description={t.features.description}
             />
           </Reveal>
 
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-            {features.items.map(({ icon: Icon, title, text, accent }, i) => (
-              <Reveal key={title} delay={(i % 3) * 100}>
-                <article
-                  className={cn(
-                    "group h-full rounded-[28px] p-7 shadow-card transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-card-hover sm:p-8",
-                    accent === "green" ? "bg-sage-light ring-1 ring-sage ring-inset" : "bg-white",
-                  )}
-                >
-                  <span
+            {features.items.map(({ icon: Icon, accent }, i) => {
+              const { title, text } = t.features.items[i];
+              return (
+                <Reveal key={i} delay={(i % 3) * 100}>
+                  <article
                     className={cn(
-                      "flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-6",
-                      accent === "green" ? "bg-leaf" : "bg-brand",
+                      "group h-full rounded-[28px] p-7 shadow-card transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-card-hover sm:p-8",
+                      accent === "green" ? "bg-sage-light ring-1 ring-sage ring-inset" : "bg-white",
                     )}
                   >
-                    <Icon className={cn("h-6 w-6", "text-ink")} strokeWidth={2} />
-                  </span>
-                  <h3 className="mt-6 text-xl font-extrabold text-ink">{title}</h3>
-                  <p className="mt-2 leading-relaxed text-muted">{text}</p>
-                </article>
-              </Reveal>
-            ))}
+                    <span
+                      className={cn(
+                        "flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-6",
+                        accent === "green" ? "bg-leaf" : "bg-brand",
+                      )}
+                    >
+                      <Icon className={cn("h-6 w-6", "text-ink")} strokeWidth={2} />
+                    </span>
+                    <h3 className="mt-6 text-xl font-extrabold text-ink">{title}</h3>
+                    <p className="mt-2 leading-relaxed text-muted">{text}</p>
+                  </article>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </div>

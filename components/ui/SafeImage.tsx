@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { publicFileExists } from "@/lib/files";
 import { cn } from "@/lib/cn";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
@@ -7,6 +6,8 @@ type SafeImageProps = {
   /** Путь от папки public, например "/hero.jpg" */
   src: string;
   alt: string;
+  /** Есть ли файл в public — проверяется на сервере (lib/files.ts → publicFileExists) */
+  exists: boolean;
   sizes: string;
   priority?: boolean;
   className?: string;
@@ -15,12 +16,12 @@ type SafeImageProps = {
 };
 
 /**
- * Серверный компонент: показывает фото через next/image,
+ * Показывает фото через next/image,
  * а если файла в public ещё нет — аккуратный placeholder.
  * Родитель должен иметь position: relative и заданный размер.
  */
-export function SafeImage({ src, alt, sizes, priority, className, position = "50% 30%" }: SafeImageProps) {
-  if (!publicFileExists(src)) {
+export function SafeImage({ src, alt, exists, sizes, priority, className, position = "50% 30%" }: SafeImageProps) {
+  if (!exists) {
     return <ImagePlaceholder label={`public${src}`} className={className} />;
   }
 

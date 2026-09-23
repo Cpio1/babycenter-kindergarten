@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import { siteConfig } from "@/lib/site";
-import { publicFileExists } from "@/lib/files";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { cn } from "@/lib/cn";
 
 type LogoProps = {
+  /** Есть ли файл public/logo.png — проверяется на сервере в layout */
+  hasLogo: boolean;
   className?: string;
   /** Показывать ли подпись BABY CENTER рядом с логотипом */
   withText?: boolean;
@@ -13,15 +17,15 @@ type LogoProps = {
  * Логотип BABY CENTER. Файл: public/logo.png.
  * Пока файла нет — показывается аккуратная жёлтая заглушка «BC».
  */
-export function Logo({ className, withText = true }: LogoProps) {
-  const hasLogo = publicFileExists(siteConfig.logo);
+export function Logo({ hasLogo, className, withText = true }: LogoProps) {
+  const { t } = useLanguage();
 
   return (
     <span className={cn("flex items-center gap-3", className)}>
       {hasLogo ? (
         <Image
           src={siteConfig.logo}
-          alt="Логотип BABY CENTER"
+          alt={t.logo.alt}
           width={160}
           height={160}
           priority
@@ -36,7 +40,7 @@ export function Logo({ className, withText = true }: LogoProps) {
       {withText && (
         <span className="flex flex-col leading-none">
           <span className="text-lg font-black tracking-tight text-ink sm:text-xl">BABY CENTER</span>
-          <span className="mt-1 text-xs font-semibold text-muted">детский сад</span>
+          <span className="mt-1 text-xs font-semibold text-muted">{t.logo.subtitle}</span>
         </span>
       )}
     </span>

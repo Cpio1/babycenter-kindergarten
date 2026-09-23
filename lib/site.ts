@@ -23,37 +23,36 @@ export const siteConfig = {
   )}&output=embed`,
 };
 
+// Подписи пунктов меню — в lib/translations.ts → nav
 export const navLinks = [
-  { label: "Главная", href: "#home" },
-  { label: "О нас", href: "#about" },
-  { label: "Преимущества", href: "#features" },
-  { label: "Галерея", href: "#gallery" },
-  { label: "Документы", href: "#documents" },
-  { label: "Контакты", href: "#contacts" },
+  { key: "home", href: "#home" },
+  { key: "about", href: "#about" },
+  { key: "advantages", href: "#features" },
+  { key: "gallery", href: "#gallery" },
+  { key: "documents", href: "#documents" },
+  { key: "contacts", href: "#contacts" },
 ] as const;
 
 export type ContactType = "address" | "phone" | "instagram" | "schedule";
 
 export type Contact = {
   type: ContactType;
-  label: string;
-  value: string;
+  /**
+   * Значение, одинаковое для всех языков. Если не задано — берётся из переводов
+   * (адрес: lib/translations.ts → contacts.address). Подписи — contacts.labels.
+   */
+  value?: string;
   /** Ссылка, например "tel:+77000000000" или "https://instagram.com/..." */
   href?: string;
 };
 
 export const contacts: Contact[] = [
-  {
-    type: "address",
-    label: "Адрес",
-    value: "г. Алматы, Алатауский район, мкр. Акбулак, ул. Талдыарал, д. 3",
-  },
-  { type: "phone", label: "Телефон", value: "+7 747 114 73 48", href: "tel:+77471147348" },
+  { type: "address" },
+  { type: "phone", value: "+7 747 114 73 48", href: "tel:+77471147348" },
   {
     type: "instagram",
-    label: "Instagram",
     value: "@baby_center_almaty",
     href: "https://instagram.com/baby_center_almaty",
   },
-  { type: "schedule", label: "Режим работы", value: "08:00–18:30" },
+  { type: "schedule", value: "08:00–18:30" },
 ];
