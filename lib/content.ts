@@ -85,4 +85,15 @@ export const galleryImages: GalleryImage[] = [
   { src: "/images/image3.jpeg", alt: "BABY CENTER", position: "50% 68%" },
   { src: "/images/image5.jpeg", alt: "BABY CENTER", position: "50% 65%" },
   { src: "/images/image4.jpeg", alt: "BABY CENTER", position: "50% 70%" },
+  // Горизонтальные афиши (image16, image15) стоят первыми в своих блоках — попадают в большую плитку
+  { src: "/images/image16.jpeg", alt: "BABY CENTER", position: "50% 50%" },
+  { src: "/images/image7.jpeg", alt: "BABY CENTER", position: "50% 30%" },
+  { src: "/images/image8.jpeg", alt: "BABY CENTER", position: "50% 35%" },
+  { src: "/images/image10.jpeg", alt: "BABY CENTER", position: "50% 30%" },
+  { src: "/images/image12.jpeg", alt: "BABY CENTER", position: "50% 40%" },
+  { src: "/images/image15.jpeg", alt: "BABY CENTER", position: "50% 50%" },
+  { src: "/images/image9.jpeg", alt: "BABY CENTER", position: "50% 45%" },
+  { src: "/images/image11.jpeg", alt: "BABY CENTER", position: "70% 50%" },
+  { src: "/images/image13.jpeg", alt: "BABY CENTER", position: "50% 35%" },
+  { src: "/images/image14.jpeg", alt: "BABY CENTER", position: "50% 45%" },
 ];
