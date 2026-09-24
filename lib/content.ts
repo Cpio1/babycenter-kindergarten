@@ -15,7 +15,6 @@ import {
   Sofa,
   Sparkles,
   Sprout,
-  Sun,
   TreePine,
   Users,
   Utensils,
@@ -51,10 +50,10 @@ export const features = {
   items: [
     { icon: Fingerprint },
     { icon: BookOpen, accent: "green" },
-    { icon: ShieldCheck },
+    { icon: Utensils },
     { icon: HeartHandshake, accent: "green" },
     { icon: Sparkles },
-    { icon: Sun, accent: "green" },
+    { icon: ShieldCheck, accent: "green" },
   ] satisfies IconItem[],
 };
 

@@ -33,7 +33,7 @@ export function Features() {
             {features.items.map(({ icon: Icon, accent }, i) => {
               const { title, text } = t.features.items[i];
               return (
-                <Reveal key={i} delay={(i % 3) * 100}>
+                <Reveal key={i} delay={(i % 3) * 100} className="h-full">
                   <article
                     className={cn(
                       "group h-full rounded-[28px] p-7 shadow-card transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-card-hover sm:p-8",
